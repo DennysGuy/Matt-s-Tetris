@@ -19,8 +19,6 @@ grid = Grid()
 #grid.print_grid()
 block = LBlock()
 
-
-
 while on:
   for event in pg.event.get():
     if event.type == pg.QUIT:
