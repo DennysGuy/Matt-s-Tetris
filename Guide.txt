@@ -1,0 +1,15 @@
+1. Setup Game Loop x
+2. Create Grid
+3. Create Blocks
+4. Move Blocks
+5. Rotate Blocks
+6. Check for Collisions
+7. Check for Completed Rows
+8. Game Over
+9. User Interface
+10. Add Score
+11. Add Next Block
+12. Add Sounds
+13. Add Music
+14. Add Main Menu
+15. Add Scoreboard
