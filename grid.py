@@ -13,7 +13,13 @@ class Grid:
       for col in range(self.num_cols):
         print(self.grid[row][col], end = " ")
       print()
-   
+  
+  def is_inside(self, row, col):
+    if row >= 0 and row < self.num_rows and col >= 0 and col < self.num_cols:
+      return True
+    else:
+      return False
+  
   def draw(self, screen):
     for row in range(self.num_rows):
       for col in range(self.num_cols):

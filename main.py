@@ -25,11 +25,15 @@ while on:
   
     if event.type == pg.KEYDOWN:
       if event.key == pg.K_LEFT:
-        game.current_block.move_left()
+        game.move_left()
       elif event.key == pg.K_RIGHT:
-        game.current_block.move_right()
+        game.move_right()
       elif event.key == pg.K_DOWN:
-        game.current_block.move_down()
+        game.move_down()
+      elif event.key == pg.K_UP:
+        game.rotate()
+        print(game.current_block.rotation_state)
+        
     
   #Drawing
   screen.fill(bg_color)
