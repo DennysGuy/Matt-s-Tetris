@@ -1,6 +1,5 @@
 from settings import *
-from grid import Grid
-from blocks import *
+from game import Game
 
 pg.init()
 
@@ -13,11 +12,10 @@ pg.display.set_caption("Matt's Tetris")
 
 clock = pg.time.Clock()
 
+game = Game()
+
 on = True
 
-grid = Grid()
-#grid.print_grid()
-block = LBlock()
 
 while on:
   for event in pg.event.get():
@@ -25,10 +23,17 @@ while on:
       pg.quit()
       sys.exit()
   
+    if event.type == pg.KEYDOWN:
+      if event.key == pg.K_LEFT:
+        game.current_block.move_left()
+      elif event.key == pg.K_RIGHT:
+        game.current_block.move_right()
+      elif event.key == pg.K_DOWN:
+        game.current_block.move_down()
+    
   #Drawing
   screen.fill(bg_color)
-  grid.draw(screen)
-  block.draw(screen)
+  game.draw(screen)
   
   pg.display.update()
   clock.tick(60)

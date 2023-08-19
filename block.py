@@ -19,12 +19,12 @@ class Block:
     tiles = self.cells[self.rotation_state]
     moved_tiles = []
     for position in tiles:
-      position = Position(position.row + self.row_offset, position.column + self.col_offset)
+      position = Position(position.row + self.row_offset, position.col + self.col_offset)
       moved_tiles.append(position)
     return moved_tiles
   
   def draw(self, screen):
-    tiles = self.cells[self.rotation_state]
+    tiles = self.get_cell_positions()
     for tile in tiles:
       tile_rect = pg.Rect(tile.col * self.cell_size + 1, tile.row * self.cell_size + 1,  
                           self.cell_size-1, self.cell_size-1)
