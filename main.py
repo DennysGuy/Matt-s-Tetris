@@ -13,6 +13,8 @@ pg.display.set_caption("Matt's Tetris")
 clock = pg.time.Clock()
 
 game = Game()
+GAME_UPDATE = pg.USEREVENT
+pg.time.set_timer(GAME_UPDATE, 200)
 
 on = True
 
@@ -32,7 +34,9 @@ while on:
         game.move_down()
       elif event.key == pg.K_UP:
         game.rotate()
-        print(game.current_block.rotation_state)
+    
+    if event.type == GAME_UPDATE:
+      game.move_down()    
         
     
   #Drawing
