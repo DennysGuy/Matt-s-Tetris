@@ -14,7 +14,7 @@ clock = pg.time.Clock()
 
 game = Game()
 GAME_UPDATE = pg.USEREVENT
-pg.time.set_timer(GAME_UPDATE, 20)
+pg.time.set_timer(GAME_UPDATE, 200)
 
 on = True
 
@@ -26,6 +26,10 @@ while on:
       sys.exit()
 
     if event.type == pg.KEYDOWN:
+      if game.game_over == True:
+        game.game_over = False
+        game.reset()
+      
       if event.key == pg.K_LEFT and game.game_over == False:
         game.move_left()
       elif event.key == pg.K_RIGHT and game.game_over == False:

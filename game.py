@@ -18,6 +18,11 @@ class Game:
     self.blocks.remove(block)
     return block
   
+  def init_game(self):
+    self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
+    self.current_block = self.get_random_block()
+    self.next_block = self.get_random_block()
+  
   def print_cel_postions(self):
     tiles = self.current_block.get_cell_positions()
     for tile in tiles:
@@ -63,7 +68,7 @@ class Game:
    
   def rotate(self):
     self.current_block.rotate_block()
-    if self.block_inside() == False:
+    if self.block_inside() == False or self.block_fits() == False:
       self.current_block.undo_rotation()
   
   def block_inside(self):
@@ -73,6 +78,10 @@ class Game:
         return False
     
     return True
+  
+  def reset(self):
+    self.grid.reset()
+    self.init_game()
   
   def draw(self, screen):
     self.grid.draw(screen)
