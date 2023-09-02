@@ -1,5 +1,5 @@
 import pygame as pg, sys
 
-GRID_WIDTH = 300
-GRID_HEIGHT = 600
+GRID_WIDTH = 800 
+GRID_HEIGHT = 720
 
