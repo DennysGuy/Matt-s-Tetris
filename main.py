@@ -10,6 +10,13 @@ bg_color = (30, 53, 105)
 pg.display.set_icon(logo)
 pg.display.set_caption("Matt's Tetris")
 
+font = pg.font.Font(None, 70)
+
+title = "Tetris"
+title_surface = font.render(title, True, (255, 255, 255))
+title_rect = title_surface.get_rect()
+title_rect.center = (GRID_WIDTH / 2, 35)
+
 clock = pg.time.Clock()
 
 game = Game()
@@ -30,6 +37,9 @@ while on:
         game.game_over = False
         game.reset()
       
+      if event.key == pg.K_r and game.game_over == False:
+        game.reset()
+      
       if event.key == pg.K_LEFT and game.game_over == False:
         game.move_left()
       elif event.key == pg.K_RIGHT and game.game_over == False:
@@ -42,14 +52,16 @@ while on:
     if event.type == GAME_UPDATE and game.game_over == False:
       game.move_down()    
   
-  if (game.game_over == True):
-    print("True")
-  else:
-    print("False")        
-    
   #Drawing
+  
+  grid_bg_color = (95, 95, 95)
+  grid_bg_pos = (GRID_WIDTH/3.33, 70)
+  grid_bg_size = (320, GRID_HEIGHT-100)
+  
   screen.fill(bg_color)
+  pg.draw.rect(screen, grid_bg_color, (grid_bg_pos, grid_bg_size), 0 , 5)
   game.draw(screen)
+  screen.blit(title_surface, title_rect)
   
   pg.display.update()
   clock.tick(60)

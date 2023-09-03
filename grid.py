@@ -59,12 +59,12 @@ class Grid:
         self.grid[row][col] = 0
   
   def draw(self, screen):
-    offset = 51
+    offset = 251
     
     for row in range(self.num_rows):
       for col in range(self.num_cols):
         cell_value = self.grid[row][col]
-        cell_rect = pg.Rect(col*self.cell_size + offset, row*self.cell_size + offset, 
+        cell_rect = pg.Rect(col*self.cell_size + offset, row*self.cell_size + 80, 
                             self.cell_size-1, self.cell_size-1)
         pg.draw.rect(screen, self.colors[cell_value], cell_rect)
     

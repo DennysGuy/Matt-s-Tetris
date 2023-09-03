@@ -38,10 +38,10 @@ class Block:
 
   def draw(self, screen):
     tiles = self.get_cell_positions()
-    offset = 51
+    offset = 251
     
     for tile in tiles:
-      tile_rect = pg.Rect(tile.col * self.cell_size + offset, tile.row * self.cell_size + offset,  
+      tile_rect = pg.Rect(tile.col * self.cell_size + offset, tile.row * self.cell_size + 80,  
                           self.cell_size-1, self.cell_size-1)
       pg.draw.rect(screen, self.colors[self.id], tile_rect)
       
