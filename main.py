@@ -54,11 +54,16 @@ while on:
   
   #Drawing
   
-  grid_bg_color = (95, 95, 95)
+  grid_bg_color = (209, 209, 209)
   grid_bg_pos = (GRID_WIDTH/3.33, 70)
   grid_bg_size = (320, GRID_HEIGHT-100)
   
+  info_hub_color = (73, 82, 252)
+  info_hub_pos = (30, 470)
+  info_hub_size = (180, 220)
+    
   screen.fill(bg_color)
+  pg.draw.rect(screen, info_hub_color, (info_hub_pos, info_hub_size), 0 , 20)
   pg.draw.rect(screen, grid_bg_color, (grid_bg_pos, grid_bg_size), 0 , 5)
   game.draw(screen)
   screen.blit(title_surface, title_rect)
