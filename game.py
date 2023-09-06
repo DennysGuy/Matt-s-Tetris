@@ -10,6 +10,9 @@ class Game:
     self.current_block = self.get_random_block()
     self.next_block = self.get_random_block()
     self.game_over = False
+    self.lines = 0
+    self.score = 0
+    self.level = 1
     
   def get_random_block(self):
     if len(self.blocks) == 0:

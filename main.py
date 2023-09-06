@@ -38,6 +38,11 @@ hold_surface = font1.render(hold, True, (255, 255, 255))
 hold_rect = hold_surface.get_rect()
 hold_rect.center = (115, 90)
 
+next_piece = "next"
+next_surface = font1.render(next_piece, True, (255, 255, 255))
+next_rect = next_surface.get_rect()
+next_rect.center = (GRID_WIDTH - 125, 90)
+
 clock = pg.time.Clock()
 
 game = Game()
@@ -93,10 +98,18 @@ while on:
   hold_hub_pos = (40, 110)
   hold_hub_size = (160, 110)
   
+  next_bg_pos = (GRID_WIDTH - 220, 70)
+  next_bg_size = (200, GRID_HEIGHT/2.2)
+  
+  next_hub_pos = (GRID_WIDTH - 210, 110)
+  next_hub_size = (180, GRID_HEIGHT/2.6)
+  
   
   screen.fill(bg_color)
-  pg.draw.rect(screen, info_hub_color, (hold_bg_pos, hold_bg_size), 0, 10)
-  pg.draw.rect(screen, info_bar_color, (hold_hub_pos, hold_hub_size), 0, 10)
+  pg.draw.rect(screen, info_hub_color, (hold_bg_pos, hold_bg_size), 0, 20)
+  pg.draw.rect(screen, info_bar_color, (hold_hub_pos, hold_hub_size), 0, 20)
+  pg.draw.rect(screen, info_hub_color, (next_bg_pos, next_bg_size), 0, 20)
+  pg.draw.rect(screen, info_bar_color, (next_hub_pos, next_hub_size), 0 ,20)
   pg.draw.rect(screen, info_hub_color, (info_hub_pos, info_hub_size), 0 , 20)
   pg.draw.rect(screen, info_bar_color, (info_bar_pos, info_bar_size), 0, 10)
   pg.draw.rect(screen, info_bar_color, ((45, 560), info_bar_size), 0, 10)
@@ -104,6 +117,7 @@ while on:
   pg.draw.rect(screen, grid_bg_color, (grid_bg_pos, grid_bg_size), 0 , 5)
   
   game.draw(screen)
+  screen.blit(next_surface, next_rect)
   screen.blit(hold_surface, hold_rect)
   screen.blit(score_surface, score_rect)
   screen.blit(title_surface, title_rect)
