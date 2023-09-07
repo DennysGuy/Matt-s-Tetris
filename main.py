@@ -63,8 +63,17 @@ while on:
         game.game_over = False
         game.reset()
       
-      if event.key == pg.K_r and game.game_over == False:
+      elif event.key == pg.K_r and game.game_over == False:
         game.reset()
+      
+      elif event.key == pg.K_UP and game.game_over == False:
+        game.rotate()
+        
+      elif event.key == pg.K_c and game.game_over == False:
+        game.hold_block()
+      
+      '''
+      
       
       if event.key == pg.K_LEFT and game.game_over == False:
         game.move_left()
@@ -72,13 +81,41 @@ while on:
         game.move_right()
       elif event.key == pg.K_DOWN and game.game_over == False:
         game.move_down()
-      elif event.key == pg.K_UP and game.game_over == False:
-        game.rotate()
+      '''
+      
+      
+    
+    keys = pg.key.get_pressed()
+    
+    if keys[pg.K_LEFT] and game.game_over == False:
+      game.move_left()
+    
+    if keys[pg.K_RIGHT] and game.game_over == False:
+      game.move_right()
+    
+    if keys[pg.K_DOWN] and game.game_over == False:
+      game.move_down()
     
     if event.type == GAME_UPDATE and game.game_over == False:
       game.move_down()    
   
   #Drawing
+  
+  lines_count = str(game.lines)
+  lines_count_surface = font1.render(lines_count, True, (255, 255, 255))
+  lines_count_rect = lines_count_surface.get_rect()
+  lines_count_rect.center = (120, 648)
+  
+  score_count = str(game.score)
+  score_count_surface = font1.render(score_count, True, (255, 255, 255))
+  score_count_rect = score_count_surface.get_rect()
+  score_count_rect.center = (120, 508)
+  
+  level_count = str(game.level)
+  level_count_surface = font1.render(level_count, True, (255, 255, 255))
+  level_count_rect = score_count_surface.get_rect()
+  level_count_rect.center = (120, 578)
+  
   
   grid_bg_color = (209, 209, 209)
   grid_bg_pos = (GRID_WIDTH/3.33, 70)
@@ -123,7 +160,9 @@ while on:
   screen.blit(title_surface, title_rect)
   screen.blit(level_surface, level_rect)
   screen.blit(lines_surface, lines_rect)
-  
+  screen.blit(lines_count_surface, lines_count_rect)
+  screen.blit(score_count_surface, score_count_rect)
+  screen.blit(level_count_surface, level_count_rect)
   
   pg.display.update()
   clock.tick(60)

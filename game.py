@@ -9,10 +9,12 @@ class Game:
     self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
     self.current_block = self.get_random_block()
     self.next_block = self.get_random_block()
+    self.hold_block = self.get_random_block()
     self.game_over = False
+    self.level = 1
     self.lines = 0
     self.score = 0
-    self.level = 1
+    self.lines_count = 0
     
   def get_random_block(self):
     if len(self.blocks) == 0:
@@ -25,14 +27,17 @@ class Game:
     self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
     self.current_block = self.get_random_block()
     self.next_block = self.get_random_block()
+    self.level = 1
+    self.lines = 0
+    self.score = 0
+    self.lines_count = 0
   
-  def print_cel_postions(self):
-    tiles = self.current_block.get_cell_positions()
-    for tile in tiles:
-      print(str(tile.row) + "," + str(tile.col))
+  def hold_block(self):
+    self.hold_block = self.current_block
+    self.current_block = self.next_block
+    self.next_block = self.get_random_block()
   
   def move_left(self):
-
       self.current_block.move(0,-1)
       
       if self.block_inside() == False or self.block_fits() == False:
@@ -51,13 +56,20 @@ class Game:
   
   def lock_block(self):
     tiles = self.current_block.get_cell_positions()
+    cleared_rows = 0
     
     for position in tiles:
       self.grid.grid[position.row][position.col] = self.current_block.id
     
     self.current_block = self.next_block
     self.next_block = self.get_random_block()
-    self.grid.clear_full_rows()       
+    cleared_rows = self.grid.clear_full_rows()
+    self.lines += cleared_rows
+    self.lines_count += cleared_rows
+    if (self.lines_count >= 10):
+      self.lines_count = 0
+      self.level_up()
+             
     if self.block_fits() == False:
       self.game_over = True
       
@@ -82,10 +94,14 @@ class Game:
     
     return True
   
+  def level_up(self):
+    if self.level < 20:
+      self.level += 1
+  
   def reset(self):
     self.grid.reset()
     self.init_game()
-  
+    
   def draw(self, screen):
     self.grid.draw(screen)
     self.current_block.draw(screen)
