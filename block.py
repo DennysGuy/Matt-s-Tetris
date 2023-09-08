@@ -36,12 +36,12 @@ class Block:
       self.rotation_state = len(self.cells)-1
 
 
-  def draw(self, screen):
+  def draw(self, screen, offset_x, offset_y):
     tiles = self.get_cell_positions()
     offset = 251
     
     for tile in tiles:
-      tile_rect = pg.Rect(tile.col * self.cell_size + offset, tile.row * self.cell_size + 80,  
+      tile_rect = pg.Rect(tile.col * self.cell_size + offset_x, tile.row * self.cell_size + offset_y,  
                           self.cell_size-1, self.cell_size-1)
       pg.draw.rect(screen, self.colors[self.id], tile_rect)
       

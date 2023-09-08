@@ -73,8 +73,6 @@ while on:
         game.hold_block()
       
       '''
-      
-      
       if event.key == pg.K_LEFT and game.game_over == False:
         game.move_left()
       elif event.key == pg.K_RIGHT and game.game_over == False:
@@ -84,7 +82,6 @@ while on:
       '''
       
       
-    
     keys = pg.key.get_pressed()
     
     if keys[pg.K_LEFT] and game.game_over == False:

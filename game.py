@@ -63,11 +63,11 @@ class Game:
     
     self.current_block = self.next_block
     self.next_block = self.get_random_block()
+    
     cleared_rows = self.grid.clear_full_rows()
     self.lines += cleared_rows
     self.lines_count += cleared_rows
     if (self.lines_count >= 10):
-      self.lines_count = 0
       self.level_up()
              
     if self.block_fits() == False:
@@ -95,6 +95,7 @@ class Game:
     return True
   
   def level_up(self):
+    self.lines_count = 0
     if self.level < 20:
       self.level += 1
   
@@ -103,5 +104,10 @@ class Game:
     self.init_game()
     
   def draw(self, screen):
-    self.grid.draw(screen)
-    self.current_block.draw(screen)
+    self.grid.draw(screen, 251, 80)
+    self.current_block.draw(screen, 251, 80)
+    
+    if self.next_block == 0:
+      self.next_block.draw(screen, 520, 120)
+    
+    self.next_block.draw(screen, 540, 120)
