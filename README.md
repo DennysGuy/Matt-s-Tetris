@@ -14,7 +14,6 @@ To run this program:
 4. navigate to the repository directory using the command line
 5. with the python file in you current directory, run command python3 Main.py
 6. Have fun!
-
-Application Preview:
+   
 ![Tetris_Snap](https://github.com/user-attachments/assets/f16f8c97-315d-4ac7-88d9-1bfbbdcaabbf)
 
